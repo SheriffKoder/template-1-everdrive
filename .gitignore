@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# development pages
+/app/development/
+/app/FontTest/
+/app/ThemeTest/
+/app/page5/

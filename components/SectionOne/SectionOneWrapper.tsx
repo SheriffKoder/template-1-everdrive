@@ -94,13 +94,13 @@ export default function SectionOneWrapper() {
       <Loader />
 
 
-      <div id="home" className="main-content flex flex-col w-full p-[1rem] relative z-[1]">
+      <div id="home" className="main-content flex flex-col w-full p-[1rem] relative z-[2] md:z-[0]">
         
-        <h1 className="text-[200px] localfont3 flex flex-col relative w-fit" id="image-revealer-heading" style={{textShadow: '0 0 10px rgba(0, 0, 0, 0.5)'}}>
+        <h1 className="z-[10] heading1 localfont3 flex flex-col relative w-fit" id="image-revealer-heading" style={{textShadow: '0 0 10px rgba(0, 0, 0, 0.5)'}}>
           <span className="leading-[90%]" >Everline</span>
-          <span className="text-[80px] leading-[90%] uppercase pl-2 flex flex-row items-center gap-[10px]">
+          <span className="heading2 leading-[90%] uppercase pl-2 flex flex-row items-center gap-[10px]">
             Drive
-            <div className='mt-auto'>
+            <div className='mt-2 md:mt-4'>
             <Image
               src="/images/main-logo.png"
               alt="Everline Drive"
@@ -157,7 +157,7 @@ export default function SectionOneWrapper() {
 
       <SideNav />
 
-      <div className='z-[1] absolute-marquee absolute right-[5%] top-1/2 -translate-y-1/2 brandSlider h-screen
+      <div className='absolute-marquee z-[1] absolute right-[10%] md:right-[5%] top-1/2 -translate-y-1/2 brandSlider h-screen
       text-center md2:text-left max-w-[100vh] 8xl:bg-gradient-to-r from-[#9046d92a] to-[#17d8ff36]
       hover:from-[#e6e6e600] hover:to-[#aff2ff00] transition-all duration-300'>
         <div className="absolute left-0 top-0 w-full h-[4%] z-10 bg-gradient-to-b from-0% from-black to-transparent"></div>
@@ -166,7 +166,7 @@ export default function SectionOneWrapper() {
       </div>
 
       <SmoothScrollButton sectionId="fleet" text="Check our fleet" backgroundColor="#03684B" textColor="white"
-      className='localfont2 text-[15px] underline underline-offset-[5px] uppercase absolute bottom-[2rem] right-1/2 translate-x-1/2 z-[10]'/>
+      className='localfont2 text-[15px] lg:text-[20px] underline underline-offset-[5px] uppercase absolute bottom-[2rem] right-1/2 translate-x-1/2 z-[10]'/>
 
     </div>
   );

@@ -4,32 +4,40 @@ import SectionLayering from '@/components/ui/SectionLayering'
 import SectionFourWrapper from '@/components/SectionFour/SectionFourWrapper'
 import SectionfiveWrapper from '@/components/SectionFive/SectionfiveWrapper'
 import SectionSixWrapper from '@/components/SectionSix/SectionSixWrapper'
+import Footer from '@/components/layout/Footer'
+import SectionfiveWrapperDesktop from '@/components/SectionFive/SectionfiveWrapperDesktop'
 
 const page = () => {
   
   return (
-    <>
+    <main className='text-white bg-black'>
       {/* <SectionLayering pin={false}> */}
-        <div className='section1 w-[100%] h-[100vh] bg-slate-400'>
+        <section className='section1 w-[100%] h-[100vh]'>
           <SectionOneWrapper />
-        </div>
+        </section>
 
-        <div className='section1 w-[100%]'>
+        <section className='section1 w-[100%]'>
           <SectionFourWrapper />
-        </div>
+        </section>
 
-        <div className='section1 w-[100%]'>
+        <section className='section1 w-[100%] px-[5%]'>
           <SectionSixWrapper />
-        </div>
+        </section>
 
 
-        <div className='section1 w-[100%]'>
+        <section className='section1 w-[100%] lg:hidden block'>
           <SectionfiveWrapper />
-        </div>
+        </section>
 
+        <section className='section1 w-[100%] hidden lg:block'>
+          <SectionfiveWrapperDesktop />
+        </section>
+
+        {/* Footer Section */}
+        <Footer />
 
       {/* </SectionLayering> */}
-    </>
+    </main>
   )
 }
 

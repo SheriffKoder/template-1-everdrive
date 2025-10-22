@@ -70,7 +70,7 @@ const FramerHeroAnimation: React.FC<FramerHeroAnimationProps> = ({
   console.log(identifier);
 
   return (
-    <div ref={containerRef} className="flex flex-col text-[40px] font-extralight  w-full localfont1 absolute top-0 left-0 ">
+    <div ref={containerRef} className="flex flex-col paragraph1 font-extralight  w-full localfont1 absolute top-0 left-0 ">
       <h1 
         ref={headerRef}
         className='font-semibold ml-[-0px]'
@@ -85,7 +85,7 @@ const FramerHeroAnimation: React.FC<FramerHeroAnimationProps> = ({
           ref={(el) => {
             if (el) linesRef.current[index] = el
           }}
-          className="text-lg  leading-[90%] text-white text-[40px]"
+          className="paragraph1 leading-[90%] text-white"
           style={{ opacity: 0, transform: 'translateY(30px)' }}
         >
           {line}

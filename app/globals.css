@@ -128,23 +128,23 @@
 }
 
 .heading1 {
-  @apply text-6xl md:text-8xl xl:text-[7rem] font-medium tracking-tighter
+  @apply text-[min(20vw,200px)] font-medium tracking-tighter
 }
 
 .heading2 {
-  @apply text-5xl md:text-6xl xl:text-[5rem] font-light
+  @apply text-[min(10vw,100px)]
 }
 
 .heading3 {
-  @apply text-5xl md:text-6xl xl:text-7xl font-light
+  @apply text-[min(6vw,100px)]
 }
 
 .paragraph1 {
-  @apply text-sm md:text-xl font-extralight
+  @apply text-[min(5vw,40px)] font-extralight
 }
 
 .paragraph2 {
-  @apply text-base md:text-base font-extralight
+  @apply text-[min(4vw,18px)] font-extralight
 }
 
 /* used for flow cards */

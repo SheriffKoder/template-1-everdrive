@@ -108,7 +108,7 @@ const LayeringZoom = () => {
   return (
     <div ref={containerRef} className="relative w-full h-[300vh] bg-black">
       <div className="sticky top-0 w-full h-screen flex items-center justify-center">
-        <h1 ref={textRef} className="text-white text-[100px]">
+        <h1 ref={textRef} className="text-white">
           <CreativeTextAnim trigger={containerRef} />
         </h1>
         

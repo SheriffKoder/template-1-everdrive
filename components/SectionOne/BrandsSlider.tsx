@@ -1,7 +1,7 @@
 "use client"
 
 import Image from 'next/image'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 // import { useGSAP } from "@gsap/react";
 import gsap from 'gsap'
@@ -18,9 +18,55 @@ const BrandsSlider = ({setCurrentContent}: {setCurrentContent: (content: string)
   const imageBlocks = useRef<(HTMLElement | null)[]>([]);
   const isBusy = useRef(false);
   
-  const cardHeight = 700;
-  const cardWidth = 460;
-  const cardMargin = 40;
+  // Responsive dimensions state
+  const [cardDimensions, setCardDimensions] = useState({
+    height: 700/4,
+    width: 460/4,
+    margin: 40/4
+  });
+
+  // Function to calculate responsive dimensions
+  const getResponsiveDimensions = () => {
+    const screenWidth = window.innerWidth;
+    
+    // Define breakpoints and their corresponding scale factors
+    const breakpoints = [
+      { min: 0, max: 480, scale: 0.25 },      // Mobile: /4
+      { min: 481, max: 768, scale: 0.25 },     // Small tablet: /2.5
+      { min: 769, max: 1024, scale: 0.4 },    // Tablet: /1.67
+      { min: 1025, max: 1440, scale: 0.6 },   // Desktop: /1.25
+      { min: 1441, max: Infinity, scale: 1 }  // Large desktop: original size
+    ];
+    
+    // Find the appropriate scale factor
+    const currentBreakpoint = breakpoints.find(
+      bp => screenWidth >= bp.min && screenWidth <= bp.max
+    );
+    
+    const scale = currentBreakpoint?.scale || 0.25;
+    
+    return {
+      height: 700 * scale,
+      width: 460 * scale,
+      margin: 40 * scale
+    };
+  };
+
+  // Update dimensions on window resize
+  useEffect(() => {
+    const updateDimensions = () => {
+      setCardDimensions(getResponsiveDimensions());
+    };
+
+    // Set initial dimensions
+    updateDimensions();
+
+    // Add resize listener
+    window.addEventListener('resize', updateDimensions);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', updateDimensions);
+  }, []);
   
   const speedFactor = 0.02
   const factor = useRef(speedFactor);
@@ -140,6 +186,8 @@ const BrandsSlider = ({setCurrentContent}: {setCurrentContent: (content: string)
     }
   };
 
+
+
   return (
     <div className="relative  w-full h-full">
       <div className="absolute left-0 top-0 w-full h-[100px] z-10 bg-gradient-to-b from-transparent to-transparent"></div>
@@ -151,16 +199,16 @@ const BrandsSlider = ({setCurrentContent}: {setCurrentContent: (content: string)
               onMouseLeave={handleMouseLeave}
           >
               <span ref={firstText} className="relative top-0">
-                  <div className={`w-[${cardWidth}px]
+                  <div className={`w-[${cardDimensions.width}px]
                   flex flex-col justify-around items-center`}
-                  style={{height: `calc(${cardHeight+cardMargin}px*${brandLogos.length})`}}
+                  style={{height: `calc(${cardDimensions.height+cardDimensions.margin}px*${brandLogos.length})`}}
                   >
                     {brandLogos.map((logo, index) => (
                       <div className={`w-full flex relative`} key={`first-${index}`}
                       style={{
-                        marginTop: `calc(${cardMargin}px)`,
-                        height: `calc(${cardHeight}px)`,
-                        width: `calc(${cardWidth}px)`
+                        marginTop: `calc(${cardDimensions.margin}px)`,
+                        height: `calc(${cardDimensions.height}px)`,
+                        width: `calc(${cardDimensions.width}px)`
                       }}
                       >
                         <div className='image-container bg-transparent w-full h-full flex justify-center 
@@ -173,7 +221,7 @@ const BrandsSlider = ({setCurrentContent}: {setCurrentContent: (content: string)
                             alt={logo.name}
                             className="object-cover object-center w-full opacity-0"
                             onMouseEnter={() => handleMouseEnter(logo.name)}
-                            style={{height: `calc(${cardHeight}px)`}}
+                            style={{height: `calc(${cardDimensions.height}px)`}}
                         />
                         <SliderButton text={logo.dsc} />
                         <div 
@@ -192,17 +240,17 @@ const BrandsSlider = ({setCurrentContent}: {setCurrentContent: (content: string)
 
               <span ref={secondText} className={`absolute`}
               style={{
-                top: `calc(${cardHeight+cardMargin}px*${brandLogos.length})`,
-                height: `calc(${cardHeight+cardMargin}px*${brandLogos.length})`,
-                width: `calc(${cardWidth}px)`
+                top: `calc(${cardDimensions.height+cardDimensions.margin}px*${brandLogos.length})`,
+                height: `calc(${cardDimensions.height+cardDimensions.margin}px*${brandLogos.length})`,
+                width: `calc(${cardDimensions.width}px)`
               }}>
-                  <div className={`w-[${cardWidth}px]
+                  <div className={`w-[${cardDimensions.width}px]
                   flex flex-col justify-around items-center`}>
                     {brandLogos.map((logo, index) => (
                       <div className={`w-full flex relative`} key={`second-${index}`}
                       style={{
-                        marginTop: `calc(${cardMargin}px)`,
-                        height: `calc(${cardHeight}px)`
+                        marginTop: `calc(${cardDimensions.margin}px)`,
+                        height: `calc(${cardDimensions.height}px)`
                       }}
                       >
                         <div className='image-container bg-transparent h-full  w-full flex justify-center 

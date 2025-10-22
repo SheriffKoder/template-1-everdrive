@@ -94,18 +94,18 @@ const CreativeTextAnim = ({trigger}: {trigger: React.RefObject<null>}) => {
 
 
   return (
-    <div className="main-section">
-        <div className="">
-            <h1 className="localfont2 uppercase text-[100px] font-bold flex flex-row">
+    <div className="main-section max-w-[80vw]">
+        <div className="w-full flex items-center justify-center">
+            <h1 className="mx-auto localfont2 uppercase heading3 font-bold flex flex-row">
             {"Service with care".split("").map((letter, index) => (
-                <div key={index} className={`titleLetter ${letter === " " ? 'w-[2rem]' : ''}`}>
+                <div key={index} className={`titleLetter ${letter === " " ? 'w-[0.5rem] md:w-[1rem]' : ''}`}>
                     {letter}
                 </div>
             ))}    
             </h1>
         </div>
-        <p className="localfont1 text-[18px] text-center sectionFourText uppercase">client satisfaction isn’t just a goal—it’s the foundation of everything we do.</p>
-        <p className="localfont1 text-[18px] text-center sectionFourText uppercase">We believe every rental should feel effortless, personal, and memorable.</p>
+        <p className="localfont1 paragraph2 text-center sectionFourText uppercase">client satisfaction isn’t just a goal—it’s the foundation of everything we do.</p>
+        <p className="localfont1 paragraph2 text-center sectionFourText uppercase">We believe every rental should feel effortless, personal, and memorable.</p>
 
     </div>
   )
